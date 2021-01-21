@@ -1,0 +1,168 @@
+/* Import fonts */
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic);
+body {
+    color: #3e3e3e;
+    background: #f1f2f7;
+    font-family: 'Open Sans', sans-serif;
+    padding: 0px !important;
+    margin: 0px !important;
+    font-size: 13px;
+}
+.h1, .h2, .h3, h1, h2, h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.main-header .logo {
+font-family: 'Open Sans', sans-serif;
+}
+
+label {
+    font-weight: 600 !important;
+    color: #475058 !important;
+}
+.box {
+    border: 0;
+    /*box-shadow: 0 0 4px rgba(0, 0, 0, .3);*/
+}
+.box-header.with-border {
+    /*color: #fff;*/
+    padding: 4px 0 0 5px;
+    /* margin-bottom: 20px; */
+    border-bottom: 2px solid #3c8dbc;
+}
+
+.box-title {
+    font-size: 15px !important;
+    font-weight: 600;
+    padding: 10px;
+    font-family: 'Open Sans', sans-serif;
+}
+.box-body {
+    padding: 30px;
+}
+.my-form-body {
+    margin: 0 auto;
+    width: 70%;
+    padding-top: 40px;
+}
+label {
+    font-weight: 500;
+}
+
+.form-group {
+        margin-bottom: 20px;
+}
+.form-control {
+    font-size: 13px;
+    /*border-radius: 4px;*/
+    /*height: 45px;*/
+}
+.settings-tab-content {
+    padding: 20px !important;
+}
+
+
+.alert {
+    /*display: inline-block;*/
+    padding: 3px 36px 3px 8px;
+    margin-bottom: 10px !important;
+}
+
+.alert h4 {
+    font-size: 14px;
+    width: auto !important;
+    margin: 0;
+    font-weight: normal;
+    display: inline-block;
+}
+
+.alert-dismissable .close, .alert-dismissible .close {
+    top: 0px;
+}
+
+.alert-success {
+    background-color: #d4edda !important;
+    border-color: #c3e6cb !important;
+    color: #155724 !important;
+}
+
+.alert-danger {
+    background-color: #f8d7da !important;
+    border-color: #f5c6cb !important;
+    color: #721c24 !important;
+}
+
+.error-message {
+    margin-top: 15px;
+    padding-left: 15px;
+}
+
+.error-message p {
+    position: relative;
+    color: #d43f3a;
+    display: list-item;
+    margin-bottom: 5px;
+}
+
+.success-message {
+    margin-top: 15px;
+    padding-left: 15px;
+}
+
+.success-message p {
+    position: relative;
+    color: #00a65a;
+    margin-bottom: 5px;
+}
+
+.navbar-nav>.user-menu>.dropdown-menu {
+    width: 190px;
+}
+
+.sidebar-menu .treeview-menu>li>a {
+    font-size: 13px;
+}
+#login-form .login-title span {
+    font-size: 30px;
+    line-height: 1.9;
+    display: block;
+    font-weight: 700;
+}
+#login-form .login-title {
+    padding-top: 80px;
+    color: #fff;
+}
+#login-form .form-box {
+    position: relative;
+    background: #fffc;
+    max-width: 375px;
+    width: 100%;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+}
+#login-form .caption {
+    margin-bottom: 40px;
+}
+#login-form .login-form input {
+    outline: none;
+    display: block;
+    width: 100%;
+    border: 1px solid #d9d9d9;
+    margin: 0 0 20px;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    min-height: 40px;
+    font-wieght: 400;
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+}
+
+#login-form {
+    background: url(../img/login_bg.jpg);
+    background-size: cover;
+}
