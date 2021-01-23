@@ -36,6 +36,9 @@
   </head>
   <body>
       <!-- Header Area -->
+
+           
+  <!-- Header Area -->
   <header class="header">
     <!-- Topbar -->
     <div class="topbar">
@@ -48,10 +51,10 @@
                 <p><i class="fas fa-thumbtack"></i>UK london</p>
               </div>
               <div class="single-top">
-                <p><a href="mailto:info@npcc.uk.org"><i class="far fa-envelope-open"></i>info@npcc.uk.org</a></p>
+                <p><a href="mailto:<?php echo $this->config->item('email') ?>"><i class="far fa-envelope-open"></i><?php echo $this->config->item('email') ?></a></p>
               </div>
               <div class="single-top">
-                <p><i class="fas fa-phone"></i>+1-9801035905</p>
+                <p><i class="fas fa-phone"></i><?php echo $this->config->item('phone') ?></p>
               </div>
             </div>
             <!-- End  Top Left -->
@@ -60,14 +63,15 @@
             <!-- Top Right -->
             <div class="top-right">
               <div class="button">
-                <a href="#" class="btn">Be a Member</a>
+                <a href="<?php echo base_url('member'); ?>" class="btn">Be a Member</a>
               </div>
               <!-- Social -->
               <ul class="social">
                 <li class="title">Follow us:</li>
-                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
+                <li><a href="<?php echo $this->config->item('facebook_url') ?>"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="<?php echo $this->config->item('twitter_url') ?>"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="<?php echo $this->config->item('pinterest_url') ?>"><i class="fab fa-pinterest-p"></i></a></li>
+                <!-- <li><a href="<?php echo $this->config->item('youtube_url') ?>"><i class="fab fa-youtube"></i></a></li> -->
               </ul>
               <!-- End Social -->
             </div>
@@ -78,49 +82,44 @@
     </div>
     <!-- End Topbar -->
     <!-- Header Inner -->
-    <div class="main-menu">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-3 col-sm-3 col-xs-12">
-            <!-- Logo -->
-            <div class="logo_pc">
+    <!--/ End Header Inner -->
+
+  </header>
+  <nav class="navbar navbar-default sticky-top">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <div class="logo_pc">
               <a href="index.php"><img src="<?php echo base_url('front_css'); ?>/img/npcclogo.jpg" alt="logo.png"></a>
             </div>
-            <!--/ End Logo -->
-            <div class="mobile-nav"></div>
-          </div>
-          <div class="col-md-9 col-sm-9">
-            <nav class="navbar navbar-default">
-              <div class="collapse navbar-collapse">
-                <ul id="nav" class="nav mobile-menu navbar-nav">
-                  <li><a href="services.php">About</a></li>
-                  <li><a href="#">Resources</a>
-                  <ul class="dropdown">
-                    <li><a href="#">Resource one</a></li>
-                    <li><a href="#">Resource one</a></li>
-                    <li><a href="#">Resource one</a></li>
-                    <li><a href="#">Resource one</a></li>
-                    <li><a href="#">Resource one</a></li>
-                    
-                  </ul>
-                </li>
-                <li><a href="membership.php">Membership</a></li>
-                <li><a href="membership.php">Press Release</a></li>
-                <li><a href="#">News & Event</a></li>
-                <li><a href="contact.php">Contact</a></li>
-              </ul>
-              
-            </div>
-          </nav>
-        </div>
       </div>
-    </div>
-  </div>
-  <!--/ End Header Inner -->
 
-
-  
-</header>
-<!-- End Header Area -->
-
-
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="<?php echo base_url('about-us'); ?>">About</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">resource <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Resource one</a></li>
+              <li><a class="dropdown-item" href="#">Resource one</a></li>
+              <li><a class="dropdown-item" href="#">Resource one</a></li>
+              <li><a class="dropdown-item" href="#">Resource one</a></li>
+              <li><a class="dropdown-item" href="#">Resource one</a></li>
+            </ul>
+          </li>
+          <li><a href="<?php echo base_url('member'); ?>">Membership</a></li>
+          <li><a href="<?php echo base_url('press-release'); ?>">Press Release</a></li>
+          <li><a href="<?php echo base_url('news'); ?>">NEWS & EVENT</a></li>
+          <li><a href="<?php echo base_url('contact-us'); ?>">CONTACT</a></li>
+          
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>

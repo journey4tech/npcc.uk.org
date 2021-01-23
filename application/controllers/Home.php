@@ -9,9 +9,9 @@ class Home extends CI_Controller
 		$this->load->library('form_validation');
 
 		$this->load->library('pagination');
-		$this->load->model('Ads_model');
 		$this->load->model('Category_model');
-		$this->load->model('Auth_model');
+		$this->load->model('Blog_model');
+		$this->load->model('Team_model');
 		$this->load->model('Page_model');
 		if ($this->config->item('status') == '0') {
 			redirect('/site_offline/');
@@ -23,10 +23,9 @@ class Home extends CI_Controller
 	{
 		$data['meta_description'] = '';
 		$data['main'] = 'home';
-		$data['recent_ads'] = $this->Ads_model->get_recent_ads();
-		$data['featured_ads'] = $this->Ads_model->get_featured_ads();
-		 
+		$data['info'] = $this->Page_model->get_info($id = 1);
 		$data['categories'] = $this->Category_model->get_active();
+		$data['blogs'] = $this->Blog_model->get_active_blog();
 		$this->load->view('index', $data);
 	}
 
@@ -46,10 +45,10 @@ class Home extends CI_Controller
 	}
 
 	
-		public function campagin()
+		public function team()
 	{
-		$data['main'] = 'page/campagin';
-		$data['info'] = $this->Page_model->get_info($id = 5);
+		$data['main'] = 'team';
+		$data['teams'] = $this->Team_model->get_active();
 		$this->load->view('index', $data);
 	}
 

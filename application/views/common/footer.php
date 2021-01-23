@@ -127,6 +127,10 @@
 <script src="<?php echo base_url('front_css'); ?>/js/particles.min.js"></script>
 <script src="<?php echo base_url('front_css'); ?>/js/gmaps.min.js"></script>
 <script src="<?php echo base_url('front_css'); ?>/js/main.js"></script>
+
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0&appId=347336248630932&autoLogAppEvents=1" nonce="vPndAEZa"></script>
+
 </body>
 
 </html>

@@ -18,16 +18,19 @@
         ?>
       </div>
 
-      
-          
-          <!-- <form role="form" method="post"  action="<?=site_url(ADMIN_PATH . '/page/create/')?>" enctype="multipart/form-data"> -->
+          <?php $attributes = array('id' => 'blog_post', 'method' => 'post');
+             echo form_open_multipart('',$attributes ); ?>
+          <div class="col-md-6">
+            <div class="form-group <?php echo (form_error('category_id') ? 'has-error' : '') ?>">
+              <label for="exampleInputEmail1" >Blog Type / Category</label>
+              <select class="form-control" name="category_id">
+                <?php foreach ($categories as $cat) {?>
+                <option value="<?php echo $cat['id'] ?>" ><?php echo $cat['name'] ?></option>
+              <?php } ?>
+              </select>
+            </div>
+          </div>
 
-            <?php $attributes = array('id' => 'blog_post', 'method' => 'post');
-     // echo form_open_multipart('admin/blog/post',$attributes);
-      ?>
-
-
-          <?php echo form_open_multipart('',$attributes ); ?>
           <div class="col-md-12">
             <div class="form-group <?php echo (form_error('title') ? 'has-error' : '') ?>">
               <label for="exampleInputEmail1" >Blog Title</label>

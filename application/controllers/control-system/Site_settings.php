@@ -35,7 +35,7 @@ class Site_settings extends CI_Controller
         } else {
             $uploaded_details = $this->upload_image('picture');
             $image = $info['logo'];
-            if ($uploaded_details['file_name'] != '') {
+            if ($uploaded_details!= '') {
                 $image = $uploaded_details['file_name'];
                 if (file_exists("./user_upload/images/" . $info['logo'])) {
                     @unlink("./user_upload/images/" . $info['logo']);
@@ -43,7 +43,8 @@ class Site_settings extends CI_Controller
             } 
             $upload_favicon = $this->upload_image('favicon');
             $favicon = $info['favicon'];
-            if ($upload_favicon['file_name'] != '') {
+            // if ($upload_favicon['file_name'] != '') {
+             if ($upload_favicon!= '') {
                 $favicon = $upload_favicon['file_name'];
                 if (file_exists("./user_upload/images/" . $info['favicon'])) {
                     @unlink("./user_upload/images/" . $info['favicon']);

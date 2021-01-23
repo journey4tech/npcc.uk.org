@@ -57,7 +57,7 @@ $route['control-system'] = 'control-system' . '/admin';
 
 //$route['ads/(:num)/(:any)'] = 'ads/detail/$1-$2';
 
-$route['ads/(:any)'] = 'ads/detail/$1';
+//$route['ads/(:any)'] = 'ads/detail/$1';
 
 //$route['jobs/(:num)/(:any)'] = 'jobs/job_detail/$1/$2';
 
@@ -75,25 +75,27 @@ $route['connect-with-google'] = 'auth_controller/connect_with_google';
 
 
 //profile routes
-$route['profile/(:any)'] = 'profile_controller/profile/$1';
-$route['favorites/(:any)'] = 'profile_controller/favorites/$1';
-$route['favorites'] = 'home_controller/guest_favorites/$1';
-$route['followers/(:any)'] = 'profile_controller/followers/$1';
-$route['following/(:any)'] = 'profile_controller/following/$1';
-$route['reviews/(:any)'] = 'profile_controller/reviews/$1';
-/*settings*/
-$route['settings'] = 'profile_controller/update_profile';
-$route['settings/update-profile'] = 'profile_controller/update_profile';
-$route['settings/shop-settings'] = 'profile_controller/shop_settings';
-$route['settings/contact-informations'] = 'profile_controller/contact_informations';
-$route['settings/social-media'] = 'profile_controller/social_media';
-$route['settings/change-password'] = 'profile_controller/change_password';
-$route['settings/shipping-address'] = 'profile_controller/shipping_address';
+// $route['profile/(:any)'] = 'profile_controller/profile/$1';
+// $route['favorites/(:any)'] = 'profile_controller/favorites/$1';
+// $route['favorites'] = 'home_controller/guest_favorites/$1';
+// $route['followers/(:any)'] = 'profile_controller/followers/$1';
+// $route['following/(:any)'] = 'profile_controller/following/$1';
+// $route['reviews/(:any)'] = 'profile_controller/reviews/$1';
+// /*settings*/
+// $route['settings'] = 'profile_controller/update_profile';
+// $route['settings/update-profile'] = 'profile_controller/update_profile';
+// $route['settings/shop-settings'] = 'profile_controller/shop_settings';
+// $route['settings/contact-informations'] = 'profile_controller/contact_informations';
+// $route['settings/social-media'] = 'profile_controller/social_media';
+// $route['settings/change-password'] = 'profile_controller/change_password';
+// $route['settings/shipping-address'] = 'profile_controller/shipping_address';
 
-//ads 
-$route['add-ads'] = 'ads/add_ads';
-$route['browse-ads'] = 'ads/browse_ads';
+
 
 //page
 $route['about-us'] = 'home/about_us';
-$route['campagin'] = 'home/campagin';
+$route['contact-us'] = 'home/contact_us';
+$route['our-team'] = 'home/team';
+$route['press-release'] = 'blog/press_release';
+$route['news'] = 'blog/news';
+$route['our-event'] = 'blog/event';

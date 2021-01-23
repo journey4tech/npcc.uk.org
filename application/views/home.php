@@ -1,18 +1,36 @@
 <!-- Carousel -->
+<?php
+$query  = $this->db->query("SELECT *  FROM banners WHERE   status='1' Order by position desc ");
+$banner = $query->result_array();
+?>
 <section>
   <div id="myCarousel" class="carousel slide">
     <!-- Menu -->
     <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
+      <?php
+                $i = 0;
+                foreach ($banner as $ban) {
+                ?>
+                <li data-target="#myCarousel" data-slide-to="<?=$i;?>" class="<?php if ($i == 0) {
+                    ?>active <?php
+                    }
+                ?>"></li>
+                <?php $i++;
+                }
+                ?>
     </ol>
     
     <!-- Items -->
     <div class="carousel-inner">
-      
+      <?php
+                $i = 0;
+                foreach ($banner as $ban) {
+                ?>
       <!-- Item 1 -->
-      <div class="item active">
+       <div class="item <?php if ($i == 0) {
+                    ?>active <?php
+                    }
+                    ?>">
         <img src="https://picsum.photos/1500/600/?image=1"/>
         <div class="container">
           <div class="carousel-caption">
@@ -22,30 +40,10 @@
           </p></div>
         </div>
       </div>
-      
-      <!-- Item 2 -->
-      <div class="item">
-        <img src="https://picsum.photos/1500/600/?image=2"/>
-        <div class="container">
-          <div class="carousel-caption">
-            <h1>Changes to the Grid</h1>
-            
-            <p><a class="btn btn-large btn-primary" href="#">Learn more</a></p>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Item 3 -->
-      <div class="item">
-        <img src="https://picsum.photos/1500/600/?image=3" />
-        <div class="container">
-          <div class="carousel-caption">
-            <h1>Percentage-based sizing</h1>
-            <!-- <p>With "mobile-first" there is now only one percentage-based grid.</p> -->
-            <p><a class="btn btn-large btn-primary" href="#">Browse gallery</a></p>
-          </div>
-        </div>
-      </div>
+       <?php
+                $i++;
+                 } ?>
+    
     </div>
     
     <!-- Controls -->
@@ -70,18 +68,17 @@
         <!-- About Image -->
         <div class="col-md-6 col-xs-12">
           <div class="image">
-            <img src="<?php echo base_url('front_css'); ?>/img/about-2.jpg" alt="#">
+            <img src="<?php echo base_url('user_upload/images') ?>/<?php echo $info['image'] ?>" alt="#">
           </div>
         </div>
         <!--/End About Image -->
         <!-- About Content -->
         <div class="col-md-6 col-xs-12 info">
           <div class="content-inner">
-            <div class="big-title"><h2>Welcome to our website</h2></div>
-            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
+            <div class="big-title"><h2><?php echo $info['title'] ?></h2></div>
+            <p><?php echo $info['description'] ?></p>
             <div class="button" style="margin-top: 25px;">
-              <a href="#" class="btn">Learn more</a>
+              <a href="<?php echo base_url('about-us'); ?>" class="btn">Learn more</a>
             </div>
             
           </div>
@@ -104,7 +101,7 @@
         <div class="call-content">
           <h3>Join us to make largest community</h3>
           <div class="button">
-            <a href="#" class="btn">Become Member</a>
+            <a href="<?php echo base_url('member'); ?>" class="btn">Become Member</a>
           </div>
         </div>
       </div>
@@ -118,66 +115,32 @@
       <div class="col-md-4">
         <div class="box-title"><h2>News-Events</h2>
           
-          
+           <?php 
+      foreach ($blogs as $blog) { ?>
           <div class="very-small-box">
-            <a href="#"><img class="img-responsive" alt="" src="<?php echo base_url('front_css') ?>/img/blog/blog-side2.png"> </a>
-            <a href="#" class="small-title">News event of npccuk.org our first meeting.</a>
+            <a href="#"><img class="img-responsive" alt="<?php echo $blog['title'] ?>" src="<?php echo base_url('user_upload/blogs') ?>/<?php echo $blog['image'] ?>"> </a>
+            <a href="#" class="small-title"><?php echo $blog['title'] ?></a>
           </div>
-          <div class="very-small-box">
-            <a href="#"><img class="img-responsive" alt="" src="<?php echo base_url('front_css') ?>/img/blog/blog-side1.png"> </a>
-            <a href="#" class="small-title"> There are many variations of passages of Lorem Ipsum available, but the majority have ...</a>
-          </div>
-          <div class="very-small-box">
-            <a href="#"><img class="img-responsive" alt="" src="<?php echo base_url('front_css') ?>/img/blog/blog-side2.png"> </a>
-            <a href="#" class="small-title">News event of npccuk.org our first meeting.</a>
-          </div>
-          <div class="very-small-box">
-            <a href="#"><img class="img-responsive" alt="" src="<?php echo base_url('front_css') ?>/img/blog/blog-side1.png"> </a>
-            <a href="#" class="small-title"> There are many variations of passages of Lorem Ipsum available, but the majority have ...</a>
-          </div>
+        <?php } ?>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="box-title"><h2>News-Events</h2>
+        <div class="box-title"><h2>Press Release</h2>
           
           
+            <?php 
+      foreach ($blogs as $blog) { ?>
           <div class="very-small-box">
-            <a href="#"><img class="img-responsive" alt="" src="<?php echo base_url('front_css') ?>/img/blog/blog-side2.png"> </a>
-            <a href="#" class="small-title">News event of npccuk.org our first meeting.</a>
+            <a href="#"><img class="img-responsive" alt="<?php echo $blog['title'] ?>" src="<?php echo base_url('user_upload/blogs') ?>/<?php echo $blog['image'] ?>"> </a>
+            <a href="#" class="small-title"><?php echo $blog['title'] ?></a>
           </div>
-          <div class="very-small-box">
-            <a href="#"><img class="img-responsive" alt="" src="<?php echo base_url('front_css') ?>/img/blog/blog-side1.png"> </a>
-            <a href="#" class="small-title"> There are many variations of passages of Lorem Ipsum available, but the majority have ...</a>
-          </div>
-          <div class="very-small-box">
-            <a href="#"><img class="img-responsive" alt="" src="<?php echo base_url('front_css') ?>/img/blog/blog-side2.png"> </a>
-            <a href="#" class="small-title">News event of npccuk.org our first meeting.</a>
-          </div>
-          <div class="very-small-box">
-            <a href="#"><img class="img-responsive" alt="" src="<?php echo base_url('front_css') ?>/img/blog/blog-side1.png"> </a>
-            <a href="#" class="small-title"> There are many variations of passages of Lorem Ipsum available, but the majority have ...</a>
-          </div>
+        <?php } ?>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="box-title"><h2>News-Events</h2>
+        <div class="box-title"><h2>Follow us on Facebook</h2>
           
-          <div class="very-small-box">
-            <a href="#"><img class="img-responsive" alt="" src="<?php echo base_url('front_css') ?>/img/blog/blog-side2.png"> </a>
-            <a href="#" class="small-title">News event of npccuk.org our first meeting.</a>
-          </div>
-          <div class="very-small-box">
-            <a href="#"><img class="img-responsive" alt="" src="<?php echo base_url('front_css') ?>/img/blog/blog-side1.png"> </a>
-            <a href="#" class="small-title"> There are many variations of passages of Lorem Ipsum available, but the majority have ...</a>
-          </div>
-          <div class="very-small-box">
-            <a href="#"><img class="img-responsive" alt="" src="<?php echo base_url('front_css') ?>/img/blog/blog-side2.png"> </a>
-            <a href="#" class="small-title">News event of npccuk.org our first meeting.</a>
-          </div>
-          <div class="very-small-box">
-            <a href="#"><img class="img-responsive" alt="" src="<?php echo base_url('front_css') ?>/img/blog/blog-side1.png"> </a>
-            <a href="#" class="small-title"> There are many variations of passages of Lorem Ipsum available, but the majority have ...</a>
-          </div>
+      <div class="fb-page" data-href="https://www.facebook.com/409649995834362" data-tabs="timeline" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/409649995834362" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/409649995834362">जनसम्पर्क समिति बेलायत Npcc Uk</a></blockquote></div>
         </div>
       </div>
        
@@ -344,19 +307,30 @@
           </div>
         </div>
         <div class="row">
+          <?php 
+      foreach ($blogs as $blog) { ?>
           <div class="col-md-4 col-sm-12 col-xs-12">
             <!-- Single Blog -->
             <div class="single-news">
               <div class="news-head">
-                <img src="<?php echo base_url('front_css'); ?>/img/blog/blog1.jpg" alt="#">
+                <img src="<?php echo base_url('user_upload/blogs') ?>/<?php echo $blog['image'] ?>" alt="#">
               </div>
               <div class="news-body">
                 <div class="news-content">
-                  <h2><a href="#">Can your business become better with new technology?</a></h2>
-                  <p class="text">Almighty, O my friend — but it is too much for my strength — I sink under the weight of the splendour of these visions!</p>
+                  <h2><a href="#"><?php echo $blog['title'] ?></a></h2>
+                  <p class="text"> <?php 
+                $string =$blog['description'];
+                $string = character_limiter($string, 200);
+               echo $string;
+                 ?></p>
                   <div class="bottom">
                     <div class="left">
-                      <i class="far fa-clock"></i><span>May 2, 2017</span>
+                      <i class="far fa-clock"></i><span><?php echo time_ago($blog['created_at']) ?> | <?php echo helper_comment_date_format($blog['created_at']) ?></span>
+                      
+
+                        
+
+
                     </div>
                     <!-- <div class="right">
                       <i class="fas fa-comments"></i><span>5 Comments</span>
@@ -367,52 +341,8 @@
             </div>
             <!-- End Single Blog -->
           </div>
-          <div class="col-md-4 col-sm-12 col-xs-12">
-            <!-- Single Blog -->
-            <div class="single-news">
-              <div class="news-head">
-                <img src="<?php echo base_url('front_css'); ?>/img/blog/blog2.jpg" alt="#">
-              </div>
-              <div class="news-body">
-                <div class="news-content">
-                  <h2><a href="#">How to Make a Decent Living as a Web Designer</a></h2>
-                  <p class="text">Almighty, O my friend — but it is too much for my strength — I sink under the weight of the splendour of these visions!</p>
-                  <div class="bottom">
-                    <div class="left">
-                      <i class="far fa-clock"></i><span>May 1, 2017</span>
-                    </div>
-                    <!-- <div class="right">
-                      <i class="fas fa-comments"></i><span>No Comments</span>
-                    </div> -->
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End Single Blog -->
-          </div>
-          <div class="col-md-4 col-sm-12 col-xs-12">
-            <!-- Single Blog -->
-            <div class="single-news">
-              <div class="news-head">
-                <img src="<?php echo base_url('front_css'); ?>/img/blog/blog3.jpg" alt="#">
-              </div>
-              <div class="news-body">
-                <div class="news-content">
-                  <h2><a href="#">Fun Examples of CSS Imitating Print Design</a></h2>
-                  <p class="text">Almighty, O my friend — but it is too much for my strength — I sink under the weight of the splendour of these visions!</p>
-                  <div class="bottom">
-                    <div class="left">
-                      <i class="far fa-clock"></i><span>April 21, 2015</span>
-                    </div>
-                    <!-- <div class="right">
-                      <i class="fas fa-comments"></i><span>No Comments</span>
-                    </div> -->
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End Single Blog -->
-          </div>
+        <?php } ?>
+           
         </div>
       </div>
     </section>

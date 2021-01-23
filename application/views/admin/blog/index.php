@@ -27,13 +27,14 @@ return false;
         
         <div class="box-body">
         
-          <table class="table table-striped table-bordered table-hover " id="datatable" >
+          <table class="table table-striped table-bordered table-hover " id="" >
             <!-- <table id="example1" class="table table-bordered table-striped"> -->
             <thead>
               <tr>
                 
                 <th>Sn.</th>
                 <th>Title</th>
+                <th>Post Type</th>
                 <th>Created Date</th>
                 <th>Status</th>
                 <th>Options</th>
@@ -47,14 +48,20 @@ return false;
               $i++;
               ?>
               <tr>
-                <td><?php echo $row['id']; ?></td>
+                <td><?php echo $i; ?></td>
                 
                 
                 <td class="center "><?=$row['title']?></td>
+                 <td class="center ">
+                  <?php echo $this->Category_model->category_name_by_id($row['category_id']); ?>
+                     
+                   </td>
                   <td class="center ">
                     <?//=$row['created_at']?>
                     <?php echo time_ago($row['created_at']) ?>
                   </td>
+
+                  
 
                 <td class="text-center">
                   <?php

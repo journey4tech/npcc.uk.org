@@ -67,7 +67,7 @@
 				<!--footer start-->
 				<footer class="main-footer">
 					<div class="pull-right hidden-xs">
-						<strong style="font-weight: 600;">Copyright © 2020 <?php echo $this->config->item('application_name') ?> - All Rights Reserved.&nbsp;</strong>
+						<strong style="font-weight: 600;">Copyright ©  <a href="https://www,journeyfortech.com"> JourneyForTech </a> Pvt.Ltd. Any issue contact us.&nbsp;</strong>
 					</div>
 					<b>Version</b> 1.0
 				</footer>

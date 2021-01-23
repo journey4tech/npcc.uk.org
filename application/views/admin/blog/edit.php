@@ -8,6 +8,23 @@
         <div class="box-body">
           
              <?php echo form_open_multipart((ADMIN_PATH.'/blog/edit/'.$info['id']), '' )?>
+
+
+             <div class="col-md-6">
+            <div class="form-group <?php echo (form_error('category_id') ? 'has-error' : '') ?>">
+              <label for="exampleInputEmail1" >Blog Type / Category</label>
+              <select class="form-control" name="category_id">
+                <?php foreach ($categories as $cat) {?>
+                <option value="<?php echo $cat['id'] ?>" <?php if($cat['id']==$info['category_id']){ echo "selected"; }?> ><?php echo $cat['name'] ?></option>
+              <?php } ?>
+              </select>
+            </div>
+          </div>
+
+
+
+
+
             <div class="col-md-12">
               <div class="form-group <?php echo (form_error('title') ? 'has-error' : '') ?>">
                 <label for="exampleInputEmail1" >Page Title</label>

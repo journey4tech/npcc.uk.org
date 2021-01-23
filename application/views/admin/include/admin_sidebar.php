@@ -65,6 +65,38 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
       </ul>
  -->
 
+  <ul class="sidebar-menu">
+        <li id="job" class="treeview">
+            <a href="#">
+              <i class="fa fa-user"></i> <span>Slider</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li id=""><a href="<?=site_url(ADMIN_PATH . '/banner');?>"><i class="fa fa-circle-o"></i>View Slider</a></li>
+              <li id=""><a href="<?=site_url(ADMIN_PATH . '/banner/create');?>"><i class="fa fa-circle-o"></i>Add New Slider</a></li>
+            </ul>
+          </li>
+      </ul>
+
+
+        <ul class="sidebar-menu">
+        <li id="job" class="treeview">
+            <a href="#">
+              <i class="fa fa-user"></i> <span>Teams</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li id=""><a href="<?=site_url(ADMIN_PATH . '/team');?>"><i class="fa fa-circle-o"></i>View Teams</a></li>
+              <li id=""><a href="<?=site_url(ADMIN_PATH . '/team/create');?>"><i class="fa fa-circle-o"></i>Add New Team</a></li>
+            </ul>
+          </li>
+      </ul>
+
+
       <ul class="sidebar-menu">
         <li id="job" class="treeview">
             <a href="#">
@@ -80,6 +112,24 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
           </li>
       </ul>
 
+      <ul class="sidebar-menu">
+        <li id="job" class="treeview">
+            <a href="#">
+              <i class="fa fa-file-text"></i> <span>Blog</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li id=""><a href="<?=site_url(ADMIN_PATH . '/blog');?>"><i class="fa fa-circle-o"></i>View Blogs</a></li>
+              <li id=""><a href="<?=site_url(ADMIN_PATH . '/blog/create');?>"><i class="fa fa-circle-o"></i>Add New Blog</a></li>
+            </ul>
+          </li>
+      </ul>
+
+
+
+      
 
     
 
@@ -104,20 +154,7 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
       </ul>
 
 
-       <ul class="sidebar-menu">
-        <li id="job" class="treeview">
-            <a href="#">
-              <i class="fa fa-file-text"></i> <span>Blog</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-              <li id=""><a href="<?=site_url(ADMIN_PATH . '/blog');?>"><i class="fa fa-circle-o"></i>View Blogs</a></li>
-              <li id=""><a href="<?=site_url(ADMIN_PATH . '/blog/create');?>"><i class="fa fa-circle-o"></i>Add New Blog</a></li>
-            </ul>
-          </li>
-      </ul>
+
       
       <ul class="sidebar-menu">
          <li class="header">BACKUP</li>

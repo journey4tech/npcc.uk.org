@@ -88,120 +88,9 @@ if (!function_exists('get_user')) {
 	}
 }
 
-//get shop name
-if (!function_exists('get_shop_name')) {
-	function get_shop_name($user)
-	{
-		if (!empty($user)) {
-			if (!empty($user->shop_name) && ($user->role == 'admin' || $user->role == 'vendor')) {
-				return html_escape($user->shop_name);
-			} else {
-				return html_escape($user->username);
-			}
-		}
-	}
-}
-
-//get shop name product
-if (!function_exists('get_shop_name_product')) {
-	function get_shop_name_product($product)
-	{
-		if (!empty($product)) {
-			if (!empty($product->shop_name) && ($product->user_role == 'admin' || $product->user_role == 'vendor')) {
-				return html_escape($product->shop_name);
-			} else {
-				return html_escape($product->user_username);
-			}
-		}
-	}
-}
-
-//get shop name by user id
-if (!function_exists('get_shop_name_by_user_id')) {
-	function get_shop_name_by_user_id($user_id)
-	{
-		$user = get_user($user_id);
-		if (!empty($user)) {
-			if (!empty($user->shop_name)) {
-				return html_escape($user->shop_name);
-			} else {
-				return html_escape($user->username);
-			}
-		}
-	}
-}
-
-//is multi-vendor active
-// if (!function_exists('is_multi_vendor_active')) {
-// 	function is_multi_vendor_active()
-// 	{
-// 		$ci =& get_instance();
-// 		$active = true;
-// 		if ($ci->general_settings->multi_vendor_system != 1) {
-// 			$active = false;
-// 		}
-// 		if ($ci->auth_check) {
-// 			if ($ci->auth_user->role == "admin") {
-// 				$active = true;
-// 			}
-// 		}
-// 		return $active;
-// 	}
-// }
-
-//check is user vendor
-if (!function_exists('is_user_vendor')) {
-	function is_user_vendor()
-	{
-		$ci =& get_instance();
-		if ($ci->auth_check && is_multi_vendor_active()) {
-			if ($ci->general_settings->vendor_verification_system != 1) {
-				return true;
-			} else {
-				if ($ci->auth_user->role == 'vendor' || $ci->auth_user->role == 'admin') {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-}
-
-//is marketplace active
-if (!function_exists('is_marketplace_active')) {
-	function is_marketplace_active()
-	{
-		$ci =& get_instance();
-		if ($ci->general_settings->marketplace_system == 1) {
-			return true;
-		}
-		return false;
-	}
-}
-
-//is bidding system active
-if (!function_exists('is_bidding_system_active')) {
-	function is_bidding_system_active()
-	{
-		$ci =& get_instance();
-		if ($ci->general_settings->bidding_system == 1) {
-			return true;
-		}
-		return false;
-	}
-}
-
-//show cart
-if (!function_exists('is_sale_active')) {
-	function is_sale_active()
-	{
-		$ci =& get_instance();
-		if (is_marketplace_active() || is_bidding_system_active()) {
-			return true;
-		}
-		return false;
-	}
-}
+ 
+ 
+ 
 
 //get translated message
 if (!function_exists('trans')) {
@@ -319,15 +208,6 @@ if (!function_exists('generate_category_url')) {
 	}
 }
 
-//generate product url
-if (!function_exists('generate_product_url')) {
-	function generate_product_url($product)
-	{
-		if (!empty($product)) {
-			return lang_base_url() . $product->slug;
-		}
-	}
-}
 
 //generate blog url
 if (!function_exists('generate_post_url')) {
@@ -1875,6 +1755,53 @@ function time_ago($timestamp)
     }
 
     return "$difference $periods[$j] {$tense}";
+}
+
+
+//date format for comments
+if (!function_exists('helper_comment_date_format')) {
+    function helper_comment_date_format($datetime)
+    {
+        $ci   = &get_instance();
+        $date = date("M j, Y g:i a", strtotime($datetime));
+        $date = str_replace("Jan", "January", $date);
+        $date = str_replace("Feb", "February", $date);
+        $date = str_replace("Mar", "March", $date);
+        $date = str_replace("Apr", "April", $date);
+        $date = str_replace("May", "May", $date);
+        $date = str_replace("Jun", "June", $date);
+        $date = str_replace("Jul", "July", $date);
+        $date = str_replace("Aug", "August", $date);
+        $date = str_replace("Sep", "September", $date);
+        $date = str_replace("Oct", "October", $date);
+        $date = str_replace("Nov", "November", $date);
+        $date = str_replace("Dec", "December", $date);
+        return $date;
+    }
+}
+
+
+//date format
+if (!function_exists('helper_date_format')) {
+    function helper_date_format($datetime)
+    {
+        $ci   = &get_instance();
+        $date = date("M j, Y", strtotime($datetime));
+        $date = str_replace("Jan", "January", $date);
+        $date = str_replace("Feb", "February", $date);
+        $date = str_replace("Mar", "March", $date);
+        $date = str_replace("Apr", "April", $date);
+        $date = str_replace("May", "May", $date);
+        $date = str_replace("Jun", "June", $date);
+        $date = str_replace("Jul", "July", $date);
+        $date = str_replace("Aug", "August", $date);
+        $date = str_replace("Sep", "September", $date);
+        $date = str_replace("Oct", "October", $date);
+        $date = str_replace("Nov", "November", $date);
+        $date = str_replace("Dec", "December", $date);
+        return $date;
+
+    }
 }
 
 if (!function_exists('is_user_online')) {

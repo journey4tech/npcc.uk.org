@@ -8,6 +8,7 @@ class Blog extends CI_Controller
         parent::__construct();
 
         $this->load->model('Blog_model');
+         $this->load->model('Category_model');
     }
 
     public function index()
@@ -16,34 +17,32 @@ class Blog extends CI_Controller
         $data['view']    = 'admin/blog/index';
         $this->load->view('admin/layout', $data);
 
-       // $data['records'] = $this->Blog_model->get_all();
-        //$data['view']    = 'admin/blog/datatable';
-       // $this->load->view('admin/layout', $data);
-
     }
 
-    public function create()
-    {
-        $this->form_validation->set_rules('title', 'Title', 'required');
-        $this->form_validation->set_rules('slug', 'Slug', 'required');
+    // public function create()
+    // {
+    //     $this->form_validation->set_rules('title', 'Title', 'required');
+    //     $this->form_validation->set_rules('slug', 'Slug', 'required');
 
-        if ($this->form_validation->run() == false) {
-            $data['view'] = 'admin/blog/create';
-            $this->load->view('admin/layout', $data);
-        } else {
+    //      $data['categories'] = $this->Category_model->get_active();
 
-            $uploaded_details = $this->upload_image('image');
-            $this->Blog_model->create($uploaded_details['file_name']);
-            $this->session->set_flashdata('success', 'Page Added Successfully ');
-            //$this->session->set_flashdata('success', trans("blog") . " " . trans("msg_suc_added"));
-            redirect(ADMIN_PATH . '/blog', 'refresh');
-        }
+    //     if ($this->form_validation->run() == false) {
+    //         $data['view'] = 'admin/blog/create';
+    //         $this->load->view('admin/layout', $data);
+    //     } else {
 
-    }
+    //         $uploaded_details = $this->upload_image('image');
+    //         $this->Blog_model->create($uploaded_details['file_name']);
+    //         $this->session->set_flashdata('success', 'Page Added Successfully ');
+    //         redirect(ADMIN_PATH . '/blog', 'refresh');
+    //     }
+
+    // }
 
         // Post New blog
     public function post()
     {
+         $data['categories'] = $this->Category_model->get_active();
         //$admin_id = $this->session->userdata('admin_id');
         if ($this->input->post('blog_post')) {
             // print_r($_POST); exit();
@@ -58,6 +57,7 @@ class Blog extends CI_Controller
             } else {
                 $data = array(
                     'title'            => ucfirst($this->input->post('title')),
+                    'category_id'      => $this->input->post('category_id'),
                     'second_title'     => $this->input->post('second_title'),
                     'slug'             => $this->input->post('slug'),
                     'description'      => $this->input->post('description'),
@@ -74,11 +74,11 @@ class Blog extends CI_Controller
                 /***************************************
                 Upload image making folder by month
                 **/
-                $date = date('Y-m');
-                if (!is_dir('user_upload/blog/' . $date)) {
-                    mkdir('./user_upload/blog/' . $date, 0777, true);
-                }
-                $path = "user_upload/blog/$date/";
+                // $date = date('Y-m');
+                // if (!is_dir('user_upload/blog/' . $date)) {
+                //     mkdir('./user_upload/blog/' . $date, 0777, true);
+                // }
+                $path = "user_upload/blogs/";
                /**********************************************/
 
                 // check all mendatory files
@@ -120,6 +120,7 @@ class Blog extends CI_Controller
 
     public function edit($id)
     {
+        $data['categories'] = $this->Category_model->get_active();
         $data['info'] = $info = $this->Blog_model->get_info($id);
         $this->form_validation->set_rules('title', 'Title', 'required');
 

@@ -1,19 +1,23 @@
- <style>
-.featured-ads { background: #f5f7fa; }
-.cont { background: #fff; border: none; }
-</style>
-<div class="sub-banner">
-  <div class="container">
-    <h1>Browse Ads</h1>
-    <p><a href="<?php echo base_url() ?>">Home</a> > Browse Ads</p>
+<div class="titlepart">
+  <div class="single-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="title_name">
+            <h2 class="text-center"><?php echo $info['title'] ?></h2>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-<div class="featured-ads single">
-  <div class="container">
-    <div class="row">
-<?php echo $info['title'] ?> 
-<br>
-<?php echo $info['description'] ?>
-    </div>
-</div>
-</div>
+
+<section class="about container">
+	<div class="row">
+		 <h2><?php echo $info['title'] ?></h2>
+		<div class="col-md-12">
+			<?php echo $info['description'] ?>
+		</div>
+	</div>
+	
+</section>
