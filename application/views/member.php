@@ -75,7 +75,7 @@
           <div class="row">
             <div class="col-md-6 col-sm-6 col-xs-12">
               <div class="form-group">
-                <label for="exampleFormControlInput1">Address In London*</label>
+                <label for="exampleFormControlInput1">Address In United Kingdom*</label>
                 <input class="form-control" id="address_in_London" name="address_in_London" placeholder="Address In London" type="text">
                 <span class="alert-error"></span>
               </div>

@@ -31,13 +31,16 @@ $banner = $query->result_array();
                     ?>active <?php
                     }
                     ?>">
-        <img src="https://picsum.photos/1500/600/?image=1"/>
+        <img src="<?php echo base_url('user_upload/banners') ?>/<?php echo $ban['image'] ?>"/>
         <div class="container">
           <div class="carousel-caption">
-            <h1>Nepali Congress Uk Organization</h1>
-            
-            <p><a class="btn btn-lg btn-primary" href="http://getbootstrap.com">Learn More</a>
-          </p></div>
+            <?php if($ban['title']!="") {?>
+            <h1><?php echo $ban['title'] ?></h1>
+            <?php } ?>
+             <?php if($ban['ban_url']!="") {?>
+            <p><a class="btn btn-lg btn-primary" href="<?php echo $ban['ban_url'] ?>">Learn More</a>
+          </p>
+          <?php } ?></div>
         </div>
       </div>
        <?php
@@ -116,10 +119,10 @@ $banner = $query->result_array();
         <div class="box-title"><h2>News-Events</h2>
           
            <?php 
-      foreach ($blogs as $blog) { ?>
+      foreach ($news as $blog) { ?>
           <div class="very-small-box">
-            <a href="#"><img class="img-responsive" alt="<?php echo $blog['title'] ?>" src="<?php echo base_url('user_upload/blogs') ?>/<?php echo $blog['image'] ?>"> </a>
-            <a href="#" class="small-title"><?php echo $blog['title'] ?></a>
+            <a href="<?php echo base_url('blog/detail') ?>/<?php echo $blog['id'] ?>"><img class="img-responsive" alt="<?php echo $blog['title'] ?>" src="<?php echo base_url('user_upload/blogs') ?>/<?php echo $blog['image'] ?>"> </a>
+            <a href="<?php echo base_url('blog/detail') ?>/<?php echo $blog['id'] ?>" class="small-title"><?php echo $blog['title'] ?></a>
           </div>
         <?php } ?>
         </div>
@@ -129,10 +132,10 @@ $banner = $query->result_array();
           
           
             <?php 
-      foreach ($blogs as $blog) { ?>
+      foreach ($press as $blog) { ?>
           <div class="very-small-box">
-            <a href="#"><img class="img-responsive" alt="<?php echo $blog['title'] ?>" src="<?php echo base_url('user_upload/blogs') ?>/<?php echo $blog['image'] ?>"> </a>
-            <a href="#" class="small-title"><?php echo $blog['title'] ?></a>
+            <a href="<?php echo base_url('blog/detail') ?>/<?php echo $blog['id'] ?>"><img class="img-responsive" alt="<?php echo $blog['title'] ?>" src="<?php echo base_url('user_upload/blogs') ?>/<?php echo $blog['image'] ?>"> </a>
+            <a href="<?php echo base_url('blog/detail') ?>/<?php echo $blog['id'] ?>" class="small-title"><?php echo $blog['title'] ?></a>
           </div>
         <?php } ?>
         </div>
@@ -313,11 +316,12 @@ $banner = $query->result_array();
             <!-- Single Blog -->
             <div class="single-news">
               <div class="news-head">
-                <img src="<?php echo base_url('user_upload/blogs') ?>/<?php echo $blog['image'] ?>" alt="#">
+                <a href="<?php echo base_url('blog/detail') ?>/<?php echo $blog['id'] ?>">
+                <img src="<?php echo base_url('user_upload/blogs') ?>/<?php echo $blog['image'] ?>" alt="#"></a>
               </div>
               <div class="news-body">
                 <div class="news-content">
-                  <h2><a href="#"><?php echo $blog['title'] ?></a></h2>
+                  <h2><a href="<?php echo base_url('blog/detail') ?>/<?php echo $blog['id'] ?>"><?php echo $blog['title'] ?></a></h2>
                   <p class="text"> <?php 
                 $string =$blog['description'];
                 $string = character_limiter($string, 200);
@@ -325,9 +329,9 @@ $banner = $query->result_array();
                  ?></p>
                   <div class="bottom">
                     <div class="left">
-                      <i class="far fa-clock"></i><span><?php echo time_ago($blog['created_at']) ?> | <?php echo helper_comment_date_format($blog['created_at']) ?></span>
+                      <i class="far fa-clock"></i><span><?php echo time_ago($blog['created_at']) ?></span>
                       
-
+  <?php //echo helper_comment_date_format($blog['created_at']) ?>
                         
 
 

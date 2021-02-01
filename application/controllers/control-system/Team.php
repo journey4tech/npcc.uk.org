@@ -21,11 +21,22 @@ class Team extends CI_Controller
         redirect(ADMIN_PATH . '/team', 'refresh');
     }
 
+     public function change_show_home($status = '', $id = '')
+    {
+        $data['breadcum']['Home'] = site_url(ADMIN_PATH);
+        $data['breadcum']['Team'] = site_url(ADMIN_PATH . '/team');
+
+        $this->Team_model->change_status($status, $id);
+        redirect(ADMIN_PATH . '/team', 'refresh');
+    }
+
+
+
     public function index()
     {
         $data['breadcum']['Home'] = site_url(ADMIN_PATH);
         $data['breadcum']['Team'] = site_url(ADMIN_PATH . '/view');
-        $data['records']          = $this->Team_model->get_active();
+        $data['records']          = $this->Team_model->get_all();
         $data['view']             = 'admin/team/index';
         $this->load->view('admin/layout', $data);
     }
@@ -36,15 +47,20 @@ class Team extends CI_Controller
         $data['breadcum']['Home'] = site_url(ADMIN_PATH);
         $data['breadcum']['Team'] = site_url(ADMIN_PATH . '/team');
         $data['breadcum']['Add']  = '';
-        $this->form_validation->set_rules('title', 'Title', 'required');
+
+        $data['years'] = $this->Team_model->get_year();
+
+        $this->form_validation->set_rules('name', 'Title', 'required');
 
         if ($this->form_validation->run() == false) {
 
             $data['view'] = 'admin/team/create';
             $this->load->view('admin/layout', $data);
         } else {
-
-            $uploaded_details = $this->upload_image('image');
+            $uploaded_details['file_name'] = "";
+            if (!empty($_FILES['image']['name'])) {
+             $uploaded_details = $this->upload_image('image');
+         }
 
             $this->Team_model->create($uploaded_details['file_name']);
             $this->session->set_flashdata('message', 'Successfully Team Added');
@@ -60,8 +76,9 @@ class Team extends CI_Controller
         $data['breadcum']['Team'] = site_url(ADMIN_PATH . '/team');
         $data['breadcum']['Edit'] = '';
 
+        $data['years'] = $this->Team_model->get_year();
         $data['info'] = $info = $this->Team_model->get_info($id);
-        $this->form_validation->set_rules('title', 'Title', 'required');
+        $this->form_validation->set_rules('name', 'Title', 'required');
 
         if ($this->form_validation->run() == false) {
 
@@ -69,7 +86,7 @@ class Team extends CI_Controller
             $this->load->view('admin/layout', $data);
         } else {
             $uploaded_details = $this->upload_image('image');
-            if ($uploaded_details['file_name'] != '') {
+            if ($uploaded_details!= '') {
                 $image = $uploaded_details['file_name'];
                 if (file_exists("./user_upload/" . $info['image'])) {
                     @unlink("./user_upload/" . $info['image']);

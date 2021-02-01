@@ -25,7 +25,12 @@ class Home extends CI_Controller
 		$data['main'] = 'home';
 		$data['info'] = $this->Page_model->get_info($id = 1);
 		$data['categories'] = $this->Category_model->get_active();
-		$data['blogs'] = $this->Blog_model->get_active_blog();
+		$data['blogs'] = $this->Blog_model->get_active_show_home();
+
+        $data['press'] = $this->Blog_model->get_active_press_show_home();
+         $data['news'] = $this->Blog_model->get_active_news_show_home();
+
+		
 		$this->load->view('index', $data);
 	}
 

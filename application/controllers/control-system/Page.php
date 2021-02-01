@@ -34,7 +34,10 @@ class Page extends CI_Controller
             $this->load->view('admin/layout', $data);
         } else {
 
-            $uploaded_details = $this->upload_image('image');
+            $uploaded_details['file_name'] = "";
+            if (!empty($_FILES['image']['name'])) {
+             $uploaded_details = $this->upload_image('image');
+         }
             $this->Page_model->create($uploaded_details['file_name']);
             $this->session->set_flashdata('success', 'Page Added Successfully ');
             //$this->session->set_flashdata('success', trans("page") . " " . trans("msg_suc_added"));
@@ -54,7 +57,7 @@ class Page extends CI_Controller
             $this->load->view('admin/layout', $data);
         } else {
             $uploaded_details = $this->upload_image('image');
-            if ($uploaded_details['file_name'] != '') {
+            if ($uploaded_details != '') {
                 $image = $uploaded_details['file_name'];
                 if (file_exists("./user_upload/images/" . $info['image'])) {
                     @unlink("./user_upload/images/" . $info['image']);

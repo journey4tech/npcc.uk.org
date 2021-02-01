@@ -55,7 +55,28 @@ class Blog_model extends CI_Model
 
     public function get_active_show_home()
     {
-        $sql   = "SELECT * FROM blogs WHERE status='1' AND show_home='1'";
+        $sql   = "SELECT * FROM blogs WHERE status='1' order by id desc limit 3";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
+     public function get_recent()
+    {
+        $sql   = "SELECT * FROM blogs WHERE status='1' order by id desc limit 6";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
+     public function get_active_news_show_home()
+    {
+        $sql   = "SELECT * FROM blogs WHERE status='1' AND show_home='1' AND category_id='1'order by id desc limit 6";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
+     public function get_active_press_show_home()
+    {
+        $sql   = "SELECT * FROM blogs WHERE status='1' AND show_home='1' AND category_id='2'order by id desc limit 6";
         $query = $this->db->query($sql);
         return $query->result_array();
     }

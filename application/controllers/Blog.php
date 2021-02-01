@@ -48,10 +48,11 @@ class Blog extends CI_Controller
 
     public function detail($id = false)
     {
-        $data['info'] = $this->Blog_model->get_blog_by_id($id);
+        $data['info'] = $this->Blog_model->get_info($id);
         if (empty($data['info'])) {
             show_404();
         }
+        $data['blogs'] = $this->Blog_model->get_recent();
         $data['main'] = 'blog_single';
         $this->load->view('index', $data);
     }

@@ -84,7 +84,7 @@ return false;
                   <a class="btn btn-default btn-xs"  href="<?=site_url(ADMIN_PATH.'/blog/edit/'.$row['id']) ?>">
                     <i class="fa fa-edit"></i> Ediit
                   </a>
-                  <a onclick="return confirm_delete();" class="btn btn-danger btn-xs" href="<?=site_url(ADMIN_PATH.'/blog/soft_delete/'.$row['id']) ?>">
+                  <a onclick="return confirm_delete();" class="btn btn-danger btn-xs" href="<?=site_url(ADMIN_PATH.'/blog/delete/'.$row['id']) ?>">
                     <i class="fa fa-trash"></i> Delete
                   </a>
                 </td>

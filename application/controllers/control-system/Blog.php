@@ -157,9 +157,6 @@ class Blog extends CI_Controller
         $this->Blog_model->delete($id);
 
         $info = $this->Blog_model->get_info($id);
-        if (file_exists("./user_upload/blogs" . $info['image'])) {
-            @unlink("./user_upload/blogs" . $info['image']);
-        }
         $this->session->set_flashdata('message', 'Deleted');
         redirect(ADMIN_PATH . '/blog', 'refresh');
     }

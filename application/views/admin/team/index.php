@@ -31,8 +31,11 @@ return false;
 							<tr>
 								
 								 <th>ID</th>
+								 <!-- <th>Image</th> -->
 								<th>Title</th>
+								<th>Year</th>
 								<th>Designation</th>
+								<th>Show In Home</th>
 								<th>Status</th>
 								<th>Options</th>
 							</tr>
@@ -46,12 +49,32 @@ return false;
 							<tr>
 								
 								 <td><?php echo $i; ?></td>
-								<td class="center "><?=$row['title']?></td>
+								 <!-- <td><img src="<?=base_url()?>/user_upload/teams/<?=$row['image']?>"
+								alt="" title="" width="90px" height="100px" /></td> -->
+								<td class="center "><?=$row['name']?></td>
+								<td><?php echo  $this->Team_model->team_year_name_by_id($row['team_year_id']);?></td>
 								 
 									<td><?php echo $row['designation'] ?></td>
 								 
 								 
 								
+								<td class="text-center">
+									<?php
+									if($row['show_home']=='1')
+									{
+									?>
+									<a href="<?=site_url(ADMIN_PATH.'/team/change_show_home/1/'.$row['id'])?>"> <span class="btn btn-success btn-xs">Yes</span></a>
+									<?php
+									}
+									else if($row['show_home']=='0')
+									{
+									?>
+									<a href="<?=site_url(ADMIN_PATH.'/team/change_show_home/0/'.$row['id'])?>"> <span class="btn btn-danger btn-xs">No</span></a>
+									<?php
+									}
+									?>
+								</td>
+
 								<td class="text-center">
 									<?php
 									if($row['status']=='1')

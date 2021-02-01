@@ -22,9 +22,26 @@ class Team_model extends CI_Model
         $this->db->update('teams', $data);
     }
 
+
+    public function change_show_home($status, $id)
+    {
+        if ($status === '1') {
+            $status = '0';
+        } else {
+            if ($status === '0') {
+                $status = '1';
+            }
+        }
+        $data = array(
+            'show_home' => $status,
+        );
+        $this->db->where('id', $id);
+        $this->db->update('teams', $data);
+    }
+
     public function get_all()
     {
-        $sql   = "SELECT * FROM teams";
+        $sql   = "SELECT * FROM teams order by id desc";
         $query = $this->db->query($sql);
         return $query->result_array();
     }
@@ -35,7 +52,14 @@ class Team_model extends CI_Model
         return $query->result_array();
     }
 
-       public function get_active_home()
+    public function get_year()
+    {
+        $sql   = "SELECT *  FROM team_year where status=1";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
+    public function get_active_home()
     {
         $sql   = "SELECT *  FROM teams WHERE status='1'";
         $query = $this->db->query($sql);
@@ -58,10 +82,13 @@ class Team_model extends CI_Model
     public function create($file_name)
     {
         $data = array(
-            'title'        => $this->input->post('title'),
-            'image'       => $file_name,
-            'designation' => $this->input->post('designation'),            
-            'status'      => $this->input->post('status'),
+            'name'         => $this->input->post('name'),
+            'team_year_id' => $this->input->post('team_year_id'),
+            'image'        => $file_name,
+            'designation'  => $this->input->post('designation'),
+            'show_home'    => $this->input->post('show_home'),
+            'rank'         => $this->input->post('rank'),
+            'status'       => $this->input->post('status'),
 
         );
         $this->db->insert('teams', $data);
@@ -69,10 +96,13 @@ class Team_model extends CI_Model
     public function update($file_name = '')
     {
         $data = array(
-             'title'        => $this->input->post('title'),
-            'image'       => $file_name,
-            'designation' => $this->input->post('designation'),            
-            'status'      => $this->input->post('status'),
+            'name'         => $this->input->post('name'),
+            'team_year_id' => $this->input->post('team_year_id'),
+            'image'        => $file_name,
+            'designation'  => $this->input->post('designation'),
+            'show_home'    => $this->input->post('show_home'),
+            'rank'         => $this->input->post('rank'),
+            'status'       => $this->input->post('status'),
         );
         $this->db->where('id', $this->input->post('id'));
         $this->db->update('teams', $data);
@@ -83,13 +113,24 @@ class Team_model extends CI_Model
         $this->db->query($sql);
     }
 
-        public function soft_delete($id)
+    public function soft_delete($id)
     {
         $data = array(
             'delete_status' => 1,
         );
         $this->db->where('id', $id);
         $this->db->update('teams', $data);
+    }
+
+     public function team_year_name_by_id($id)
+    {
+        $query = $this->db->get_where('team_year', array("id" => $id));
+        $data  = $query->row_array();
+        if ($data['name']) {
+            return $data['name'];
+        } else {
+            return "NONE";
+        }
     }
 }
 /* End of file banner_management_model.php */

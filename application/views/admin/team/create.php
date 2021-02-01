@@ -7,15 +7,32 @@
         </div>
         <div class="box-body">
           <form name="frm" id="frm" method="post"  action="" enctype="multipart/form-data" class="form-horizontal">
-            <div class="form-group <?php echo (form_error('title') ? 'has-error' : '') ?>">
+            <?php
+            $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+            ); ?>
+            <input type="hidden" name="<?=$csrf['name'];?>" value="<?=$csrf['hash'];?>" />
+            
+            <div class="form-group <?php echo (form_error('team_year_id') ? 'has-error' : '') ?>">
+              <label for="text1" class="control-label col-lg-2">Year</label>
+              <div class="col-lg-6">
+                <select name="team_year_id" id="" class="form-control">
+                  <?php foreach ($years as $y) {?>
+                  <option value="<?php echo $y['id'] ?>"> <?php echo $y['name'] ?> </option>
+                  <?php } ?>
+                </select>
+              </div>
+            </div>
+            <div class="form-group <?php echo (form_error('name') ? 'has-error' : '') ?>">
               <label for="text1" class="control-label col-lg-2">Title</label>
               <div class="col-lg-6">
-                <input name="title" id="title" type="text" class="form-control required"  value="<?=set_value('title');?>">
+                <input name="name" id="name" type="text" class="form-control required"  value="<?=set_value('name');?>">
               </div>
             </div>
             
-             
-
+            
+            
             <div class="form-group">
               <label for="text1" class="control-label col-lg-2">Image</label>
               <div class="col-lg-6">
@@ -23,14 +40,32 @@
               </div>  <?=form_error('image')?>
             </div>
 
-
             <div class="form-group">
               <label for="text1" class="control-label col-lg-2">Designation</label>
               <div class="col-lg-6">
                 <input name="designation" id="designation" type="text" class="form-control required"  value="<?=set_value('designation');?>">
               </div>  <?=form_error('designation')?>
             </div>
-             
+            
+
+            <div class="form-group <?php echo (form_error('rank') ? 'has-error' : '') ?>">
+              <label for="text1" class="control-label col-lg-2">Order Number</label>
+              <div class="col-lg-6">
+                <input name="rank" id="rank" type="number" class="form-control required"  value="<?=set_value('rank');?>">
+              </div>
+            </div>
+
+
+             <div class="form-group">
+              <label  class="control-label col-lg-2">Show in Home</label>
+              <div class="col-lg-6">
+                <input type="radio" name="show_home"  checked="checked" value="0" >
+                No
+                <input type="radio" name="show_home" value="1" />
+              Yes</div>
+            </div>
+
+
             <div class="form-group">
               <label  class="control-label col-lg-2">Status</label>
               <div class="col-lg-6">

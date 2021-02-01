@@ -7,10 +7,36 @@
         </div>
         <div class="box-body">
           <form name="frm" id="frm" method="post"   enctype="multipart/form-data" class="form-horizontal" action="<?=site_url(ADMIN_PATH.'/team/edit/'.$info['id'])?>">
+             <?php
+            $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+            ); ?>
+            <input type="hidden" name="<?=$csrf['name'];?>" value="<?=$csrf['hash'];?>" />
+
+
+ <div class="form-group <?php echo (form_error('team_year_id') ? 'has-error' : '') ?>">
+              <label for="text1" class="control-label col-lg-2">Year</label>
+              <div class="col-lg-6">
+                <select name="team_year_id" id="" class="form-control">
+                  <?php foreach ($years as $y) {?>
+                  <option value="<?php echo $y['id'] ?>" <?php if($y['id']==$info['team_year_id']){ echo "selected"; }?>> <?php echo $y['name'] ?> </option>
+                  <?php } ?>
+                </select>
+              </div>
+            </div>
+
+              
+
+            
+
+
+
+
             <div class="form-group <?php echo (form_error('name') ? 'has-error' : '') ?>">
               <label  class="control-label col-lg-2">Title</label>
               <div class="col-lg-6">
-                <input name="title" id="title" type="text" class="form-control required" value="<?=set_value('title',$info['title']);?>">
+                <input name="name" id="name" type="text" class="form-control required" value="<?=set_value('name',$info['name']);?>">
               </div>
             </div>
 
@@ -21,14 +47,22 @@
               </div>
             </div>
 
+              <div class="form-group <?php echo (form_error('rank') ? 'has-error' : '') ?>">
+              <label for="text1" class="control-label col-lg-2">Order Number</label>
+              <div class="col-lg-6">
+                <input name="rank" id="rank" type="number" class="form-control required"  value="<?=set_value('rank',$info['rank']);?>">
+              </div>
+            </div>
+
+
             <?php if($info['image']!="") { ?>
                
               <div class="form-group">
                  <label  class="control-label col-lg-2"></label>
               <div class="col-lg-6">
   
-              <a href="<?=base_url()?>user_upload/<?=$info['image']?>" onclick="Javascript:void(0)" class="preview"> <img src="<?=base_url()?>/user_upload/<?=$info['image']?>"
-         alt="" title="" width="350px" height="150px" /> </a>
+              <a href="<?=base_url()?>user_upload/teams/<?=$info['image']?>" onclick="Javascript:void(0)" class="preview"> <img src="<?=base_url()?>/user_upload/teams/<?=$info['image']?>"
+         alt="" title="" width="" height="" /> </a>
                </div>
              </div>
               <?php  } ?>
@@ -46,7 +80,14 @@
             </div>
 
             
-            
+                        <div class="form-group">
+              <label  class="control-label col-lg-2">Show in Home</label>
+              <div class="col-lg-6">
+                <input type="radio" name="show_home" value="0" <?php if($info['show_home']==0) echo "checked";?> >
+                Inactive
+                <input type="radio" name="show_home" value="1" <?php if($info['show_home']==1) echo "checked";?> />
+              Active </div>
+            </div>
             
              
             <div class="form-group">
